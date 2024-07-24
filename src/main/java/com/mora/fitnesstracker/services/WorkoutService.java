@@ -1,9 +1,6 @@
 package com.mora.fitnesstracker.services;
 
-import com.mora.fitnesstracker.DTO.CreateWorkoutRequestDTO;
-import com.mora.fitnesstracker.DTO.CreateWorkoutResponseDTO;
-import com.mora.fitnesstracker.DTO.UpdateWorkoutRequestDTO;
-import com.mora.fitnesstracker.DTO.UpdateWorkoutResponseDTO;
+import com.mora.fitnesstracker.DTO.*;
 import com.mora.fitnesstracker.entities.Workout;
 import com.mora.fitnesstracker.repositories.WorkoutRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +36,13 @@ public class WorkoutService {
         workoutRepository.save(workout);
         return UpdateWorkoutResponseDTO.builder()
                 .message("Workout updated successfully")
+                .build();
+    }
+
+    public DeleteWorkoutResponseDTO deleteWorkout(long id) {
+        workoutRepository.deleteById(id);
+        return DeleteWorkoutResponseDTO.builder()
+                .message("Workout deleted successfully")
                 .build();
     }
 }
