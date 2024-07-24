@@ -21,8 +21,8 @@ public class Workout {
     private String date;
 
     @Column
-    private String name;
+    private String workoutName;
 
     @Column
-    private String duration;
+    private int duration;
 }

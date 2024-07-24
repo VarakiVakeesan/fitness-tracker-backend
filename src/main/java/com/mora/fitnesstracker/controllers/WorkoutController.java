@@ -4,9 +4,8 @@ import com.mora.fitnesstracker.entities.Workout;
 import com.mora.fitnesstracker.services.WorkoutService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.mora.fitnesstracker.DTO.*;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,9 +14,15 @@ import java.util.List;
 public class WorkoutController {
     @Autowired
     private WorkoutService workoutService;
+
     @GetMapping("/get-workouts")
     public ResponseEntity<List<Workout>> getWorkouts() {
         List<Workout> workouts = workoutService.getWorkouts();
         return ResponseEntity.ok(workouts);
+    }
+
+    @PostMapping("/create-workout")
+    public ResponseEntity<CreateWorkoutResponseDTO> createWorkout(@RequestBody CreateWorkoutRequestDTO createWorkoutRequestDTO) {
+        return ResponseEntity.ok(workoutService.createWorkout(createWorkoutRequestDTO));
     }
 }
